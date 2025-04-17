@@ -33,4 +33,16 @@ public class SpeedTestController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("/upload")
+    public ResponseEntity<Double> getUploadSpeed(){
+        log.debug("REST request to get upload speed");
+        try {
+            Double speed = speedTestService.getUploadSpeed();
+            return ResponseEntity.ok(speed);
+        } catch (Exception e){
+            log.debug("Exception while getting upload speed: {}", e.getMessage(), e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
